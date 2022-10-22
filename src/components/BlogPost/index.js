@@ -7,9 +7,9 @@ const BlogPost = () => {
   const navegate = useNavigate();
 
   const blogPost = blogData.find(post => post.slug === slug);
-  
+
   const onReturnBlog = () => {
-    navegate('/blog');
+    navegate(-1);
   }
   return (
     <>
