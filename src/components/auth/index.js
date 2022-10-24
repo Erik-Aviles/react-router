@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
@@ -8,11 +8,11 @@ const AuthProvider = ({children}) => {
 
   const login = ({userName}) => {
     setUser({userName});
-    navegate('/profile')
+    navegate('/profile');
   }
   const logout = () => {
-
-    navegate('/login')
+    setUser(null);
+    navegate('/')
   }
     const auth = {user, login, logout};
   return (
@@ -27,4 +27,14 @@ const useAuth = (children) => {
   return auth;
 }
 
-export { AuthProvider , useAuth};
+const AuthRouter = ( props ) => {
+  const auth = useAuth();
+  if (!auth.user) {
+    return <Navigate to='/login'/>
+  } else {
+    return props.children
+  }
+
+}
+
+export { AuthProvider , useAuth, AuthRouter};
