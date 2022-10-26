@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { adminList, creatorList, analystList } from '../administratorsRoles';
 
-const adminList = ['heinert', 'andy', 'erik'];
+
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
@@ -9,8 +10,10 @@ const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
 
   const login = ({userName}) => {
-    const isAdmin = adminList.find(admin => admin === userName);
-    setUser({userName, isAdmin});
+    const isAdmin = adminList.find(admin => admin.name === userName);
+    const isCreator = creatorList.find(creator => creator.name === userName);
+    const isAnality = analystList.find(isAnality => isAnality.name === userName);
+    setUser({userName, isAdmin, isAnality, isCreator });
     navegate('/profile');
   }
   const logout = () => {
