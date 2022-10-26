@@ -10,6 +10,7 @@ blogData.push({
   slug:'que-es-veu',
   title:'Que es Veu',
   content: 'Vue.js es consciente de que app.reversedMessage depende de app.message, por lo que actualizará cualquier enlace que dependa de app.reversedMessage cuando cambie ',
+  author: 'nay2005'
 })
 blogData.push({
   slug:'que-es-angular',
@@ -21,7 +22,13 @@ blogData.push({
   slug:'que-es-express',
   title:'Que es express',
   content: 'Express.js, a veces también llamado «Express», es un framework de backend Node.js minimalista, rápido y similar a Sinatra, que proporciona características y herramientas robustas para desarrollar aplicaciones de backend escalables.',
-  author:'hei2004',
+  author:'serg2003',
+})
+blogData.push({
+  slug:'que-es-node',
+  title:'Que es node',
+  content: 'Node es un programa de servidor. Sin embargo, el producto base de Node definitivamente No es como Apache o Tomcat. Apache o Tomcat básicamente son productos para servidor listos para instalar y que están listos para implementar aplicaciones instantáneamente.',
+  author:'omy2003',
 })
 
 export { blogData };

@@ -13,7 +13,7 @@ const LogoutPage = () => {
   
   return (
     <>
-      <h1> Logout</h1>
+      <h1>Cerrar cesion</h1>
 
       <form onSubmit={onLogout}>
         <label>Quieres salir? </label>

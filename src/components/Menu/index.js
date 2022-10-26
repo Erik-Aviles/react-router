@@ -44,19 +44,19 @@ routes.push({
 });
 routes.push({
   to: '/profile',
-  text: 'Profile',
+  text: 'Tu perfil',
   private: true,
 
 });
 routes.push({
   to: '/login',
-  text: 'Login',
+  text: 'Iniciar sesion',
   private: false,
   publicOnly: true,
 });
 routes.push({
   to: '/logout',
-  text: 'Logout',
+  text: 'Cerrar sesion',
   private: true,
 
 });

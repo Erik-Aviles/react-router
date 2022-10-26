@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+
+const adminList = ['heinert', 'andy', 'erik'];
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
@@ -7,7 +9,8 @@ const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
 
   const login = ({userName}) => {
-    setUser({userName});
+    const isAdmin = adminList.find(admin => admin === userName);
+    setUser({userName, isAdmin});
     navegate('/profile');
   }
   const logout = () => {
@@ -23,7 +26,6 @@ const AuthProvider = ({children}) => {
 }
 const useAuth = (children) => {
   const auth = useContext(AuthContext);
-  console.log(auth)
   return auth;
 }
 
