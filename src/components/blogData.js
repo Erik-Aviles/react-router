@@ -5,14 +5,12 @@ blogData.push({
   title:'Que es react',
   content: 'React Nativees un framework JavaScript de código abierto construido sobre la librería React. Los desarrolladores lo utilizan para crear aplicaciones React multiplataforma para iOS y Android.',
   author:'erik88',
-  role: undefined,
 })
 blogData.push({
   slug:'que-es-veu',
   title:'Que es Veu',
   content: 'Vue.js es consciente de que app.reversedMessage depende de app.message, por lo que actualizará cualquier enlace que dependa de app.reversedMessage cuando cambie ',
   author: 'nay2005',
-  role: undefined,
 })
 blogData.push({
   slug:'que-es-angular',
@@ -33,5 +31,6 @@ blogData.push({
   content: 'Node es un programa de servidor. Sin embargo, el producto base de Node definitivamente No es como Apache o Tomcat. Apache o Tomcat básicamente son productos para servidor listos para instalar y que están listos para implementar aplicaciones instantáneamente.',
   author:'omy2003',
 })
+
 
 export { blogData };

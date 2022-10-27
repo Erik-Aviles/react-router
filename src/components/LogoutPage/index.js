@@ -3,12 +3,11 @@ import { useAuth } from '../auth';
 
 const LogoutPage = () => {
 
-  const auth = useAuth();
+  const{ auth }= useAuth();
   
   const onLogout = (e) =>{
     e.preventDefault();
     auth.logout()
-    console.log('Logout')
   }
   
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BlogLink } from '../BlogLink';
-import { blogData } from '../blogData';
+/* import { blogData } from '../blogData'; */
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../auth';
 
 const BlogPage = () => { 
-  const auth = useAuth();
+  const {auth, post } = useAuth();  
   
   return (
     <div>
@@ -19,7 +19,7 @@ const BlogPage = () => {
           </p>
       }
       <ul>
-        {blogData.map(post =>(
+        {post.posts.map(post =>(
           <BlogLink
           key={post.slug} post={post}/>
           ))}

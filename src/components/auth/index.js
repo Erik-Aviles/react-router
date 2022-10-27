@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { adminList, creatorList, analystList } from '../administratorsRoles';
-
+import { blogData } from '../blogData';
 
 const AuthContext = createContext();
 
@@ -9,31 +9,47 @@ const AuthProvider = ({children}) => {
   const navegate = useNavigate();
   const [user, setUser] = useState(null);
 
+  const [posts, setPosts ]= useState(blogData);
+
+  const eliminarPost = slug =>{ 
+      if (posts) {
+        const postIndex = posts.slice(post => post.slug === slug);
+      console.log(postIndex)
+      posts.splice(postIndex, 1);
+      const newPosts = [...posts];
+      console.log(newPosts)
+      setPosts(newPosts);
+      navegate(-1)
+      }
+  };
+
   const login = ({userName}) => {
     const isAdmin = adminList.find(admin => admin.name === userName);
     const isCreator = creatorList.find(creator => creator.name === userName);
     const isAnality = analystList.find(isAnality => isAnality.name === userName);
-    setUser({userName, isAdmin, isAnality, isCreator });
+    setUser({userName , isAdmin, isAnality, isCreator})
     navegate('/profile');
   }
   const logout = () => {
     setUser(null);
     navegate('/')
   }
+ 
+  const post = {posts, eliminarPost}
     const auth = {user, login, logout};
   return (
-    <AuthContext.Provider value={auth}>
+    <AuthContext.Provider value={{auth, post}}>
       {children}
     </AuthContext.Provider>
   );
 }
 const useAuth = (children) => {
-  const auth = useContext(AuthContext);
-  return auth;
+  const{ auth, post} = useContext(AuthContext);
+  return {auth, post};
 }
 
 const AuthRouter = ( props ) => {
-  const auth = useAuth();
+  const{ auth } = useAuth();
   if (!auth.user) {
     return <Navigate to='/login'/>
   } else {

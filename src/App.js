@@ -31,8 +31,8 @@ function App() {
               path="/profile" 
               element={
                 <AuthRouter>
-                <ProfilePage/>
-              </AuthRouter> }>
+                  <ProfilePage/>
+                </AuthRouter> }>
 
             </Route>
             <Route path="*" element={<p>Not found</p> }/>

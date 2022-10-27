@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../auth';
 
 const Menu = () => {
-  const auth = useAuth();
+  const{ auth } = useAuth();
   return (
     <nav>
       <ul>
