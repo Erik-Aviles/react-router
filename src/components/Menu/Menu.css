@@ -1,0 +1,9 @@
+.Menu{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ul{
+    list-style: none;
+    text-decoration: none;
+}

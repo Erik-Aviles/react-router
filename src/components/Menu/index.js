@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../auth';
+import './Menu.css'
 
 const Menu = () => {
   const{ auth } = useAuth();
   return (
     <nav>
-      <ul>
+      <ul className='Menu'>
         {routes.map(route => {
           if (route.publicOnly  && auth.user ) return null;
           if (route.private  && !auth.user ) return null;

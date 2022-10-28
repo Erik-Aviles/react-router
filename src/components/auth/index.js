@@ -11,17 +11,11 @@ const AuthProvider = ({children}) => {
 
   const [posts, setPosts ]= useState(blogData);
 
-  const eliminarPost = slug =>{ 
-      if (posts) {
-        const postIndex = posts.slice(post => post.slug === slug);
-      console.log(postIndex)
-      posts.splice(postIndex, 1);
-      const newPosts = [...posts];
-      console.log(newPosts)
-      setPosts(newPosts);
-      navegate(-1)
-      }
+  const eliminarPost = (slug)=>{ 
+    const newPosts = posts.filter(post => post.slug !== slug);
+    setPosts(newPosts);
   };
+
 
   const login = ({userName}) => {
     const isAdmin = adminList.find(admin => admin.name === userName);

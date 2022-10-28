@@ -6,7 +6,7 @@ import { useAuth } from '../auth';
 
 const BlogPage = () => { 
   const {auth, post } = useAuth();  
-  
+
   return (
     <div>
       <h1>Blog </h1>
@@ -19,12 +19,16 @@ const BlogPage = () => {
           </p>
       }
       <ul>
-        {post.posts.map(post =>(
+        {post.posts.map(postes =>(
           <BlogLink
-          key={post.slug} post={post}/>
-          ))}
+            key={postes.slug} 
+            postes={postes}
+           /*  postDelete={post.eliminarPost} */
+            />
+            ))}
       </ul>
       <Outlet />
+      
       
     </div>
   )

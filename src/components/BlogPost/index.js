@@ -1,11 +1,13 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 import { ButtonReturn } from '../ButtonReturn';
-import { useAuth } from '../auth'
-import { ButtonDeletePost } from '../ButtonDeletePost';
+import { useAuth } from '../auth';
+
+
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const navegate = useNavigate();
 
   const { auth, post }= useAuth()
   const blogPost = post.posts.find(post => post.slug === slug);
@@ -13,6 +15,11 @@ const BlogPost = () => {
   const canDelete = auth.user?.isAdmin?.name;
   const canAdd = auth.user?.isAnality?.name;
   const canRefresh = auth.user?.isCreator?.name;
+  
+  const onDelete = () =>{
+    post.eliminarPost(blogPost?.slug)
+    navegate('/blog')
+  }
 
   return (
     <> 
@@ -21,7 +28,9 @@ const BlogPost = () => {
       <p>{blogPost.content}</p>
 
       {canDelete && (
-      <ButtonDeletePost/>
+        <button onClick={onDelete}>
+          eliminar
+        </button>
       )}
       {canAdd && (
         <button>Agregar post</button>
