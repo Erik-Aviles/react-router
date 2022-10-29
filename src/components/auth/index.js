@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { adminList, creatorList, analystList } from '../administratorsRoles';
 import { blogData } from '../blogData';
@@ -27,6 +27,10 @@ const AuthProvider = ({children}) => {
     ]
     setPosts(changePosts)
   }
+  useEffect(()=>{
+    navegate('/')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
 /*   const addPost = (post) => {
     const newPosts = [

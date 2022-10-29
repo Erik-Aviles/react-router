@@ -6,7 +6,6 @@ import { useAuth } from '../auth';
 
 const BlogPost = () => {
   const { slug } = useParams();
-  console.log(slug)
   const navegate = useNavigate();
 
   const { auth, post }= useAuth()
@@ -32,7 +31,7 @@ const BlogPost = () => {
         </button>
       )}
       {canRefresh && (
-        <button> Actualizar post</button>
+        <button> Modificar post</button>
         )}
       
      
