@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-const BlogLink = ({postes}) => {
+const BlogLink = ({post}) => {
 
 
   return (
     <li>
-      <Link to={`/blog/${postes.slug}`}>{postes.title}</Link>
+      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
     </li>
   )
 }

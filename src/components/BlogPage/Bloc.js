@@ -3,13 +3,18 @@ import { BlogLink } from '../BlogLink';
 /* import { blogData } from '../blogData'; */
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../auth';
+import { ButtonAddPost } from '../ButtonReturn';
+/* import { ButtonReturn } from '../ButtonReturn'; */
 
 const BlogPage = () => { 
-  const {auth, post } = useAuth();  
 
+  const {auth, post} = useAuth(); 
+  const posts = post.posts; 
+
+  const canAdd = auth.user?.isAnality?.name || auth.user?.isCreator?.name || auth.user?.isAdmin?.name;;
   return (
     <div>
-      <h1>Blog </h1>
+      <h1>Blog </h1>  
       {
         auth.user?.userName && 
           <p>{`User: (${auth.user?.userName})`} 
@@ -18,16 +23,20 @@ const BlogPage = () => {
             {auth.user?.isCreator?.name && ` es Creador`}
           </p>
       }
+      {canAdd && (
+        <ButtonAddPost> Agregar post</ButtonAddPost>
+      )}
+    
       <ul>
-        {post.posts.map(postes =>(
+        {posts.map(post =>(
           <BlogLink
-            key={postes.slug} 
-            postes={postes}
-           /*  postDelete={post.eliminarPost} */
+            key={post.slug} 
+            post={post}
             />
             ))}
       </ul>
       <Outlet />
+  
       
       
     </div>

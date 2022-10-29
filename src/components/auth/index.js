@@ -16,6 +16,26 @@ const AuthProvider = ({children}) => {
     setPosts(newPosts);
   };
 
+  const addPost = (post) => {
+    const newPosts = {
+      ...post,
+    }
+    const changePosts = [
+      ...posts,
+      newPosts,
+
+    ]
+    setPosts(changePosts)
+  }
+  
+/*   const addPost = (post) => {
+    const newPosts = [
+      ...posts,
+  ]
+    newPosts.push(post)
+    setPosts(newPosts)
+  } */
+
 
   const login = ({userName}) => {
     const isAdmin = adminList.find(admin => admin.name === userName);
@@ -29,7 +49,7 @@ const AuthProvider = ({children}) => {
     navegate('/')
   }
  
-  const post = {posts, eliminarPost}
+  const post = {posts, eliminarPost, addPost}
     const auth = {user, login, logout};
   return (
     <AuthContext.Provider value={{auth, post}}>

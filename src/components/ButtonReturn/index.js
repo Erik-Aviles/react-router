@@ -1,13 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const ButtonReturn = (props) => {
     
     const navegate = useNavigate();
 
     const onReturnBlog = () => {
-        navegate(-1);
+        navegate('/blog');
       }
+   
    return (
     <>
       <button onClick={onReturnBlog}>
@@ -16,4 +18,18 @@ const ButtonReturn = (props) => {
     </>
    )
 }
-export { ButtonReturn };
+
+
+// ------------------------------------------------
+const ButtonAddPost = (props) => {
+  return (
+    <>
+      <button >
+        <Link to={'/blog/add-post'}>{props.children}</Link>
+      </button>
+    </>
+   )
+}
+
+
+export { ButtonReturn , ButtonAddPost};

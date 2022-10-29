@@ -7,6 +7,7 @@ import { ProfilePage } from './components/ProfilePage';
 import { BlogPost } from './components/BlogPost';
 import { LoginPage } from './components/LoginPage';
 import { LogoutPage } from './components/LogoutPage';
+import AddPost from './components/AddPost';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<HomePage /> } />
             <Route path="/blog" element={<BlogPage /> }>
               <Route path=":slug" element={<BlogPost /> }/>
+              <Route path="add-post" element={<AddPost /> }/>
             </Route>
             <Route path="/login" element={<LoginPage /> }/>
             <Route 

@@ -14,7 +14,7 @@ blogData.push({
 })
 blogData.push({
   slug:'que-es-angular',
-  title:'Que es angular',
+  title:'Que es angularrrrrrr',
   content: 'Se trata de un framework de JavaScript que los desarrolladores utilizan para crear aplicaciones web de una sola página. Debido al uso de la arquitectura Modelo-Vista-Controlador, no es necesario escribir manualmente el mismo código para los archivos HTML y JavaScript.',
   author:'hei2004',
 })
