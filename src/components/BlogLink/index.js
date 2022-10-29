@@ -7,7 +7,7 @@ const BlogLink = ({post}) => {
 
   return (
     <li>
-      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+      <Link to={`/blog/${post.title.toLowerCase().split(" ").join("-")}`}>{post.title}</Link>
     </li>
   )
 }

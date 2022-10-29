@@ -4,7 +4,6 @@ import { useAuth } from '../auth';
 import './AddPost.css'
 
 const inicialValue = {
-  slug: '',
   title: '',
   content: '',
   author: '',
@@ -15,7 +14,7 @@ const AddPost = () => {
   const navegate = useNavigate()
 
   const [value, setValue] = useState(inicialValue);
-  const {slug, title, content, author } = value;
+  const {title, content, author } = value;
   const { post } = useAuth();
   
   const handleChange = (e) =>{
@@ -39,13 +38,6 @@ const AddPost = () => {
     <div className='content-add-post'>
       <h3 className='title-3'>Agregar un nuevo post</h3>
       <form onSubmit={handleSubmit} className='form'>
-        <input 
-          placeholder='slug' 
-          type='text'
-          name='slug'
-          value={slug.toLowerCase().split(" ").join("-")}
-          onChange={handleChange}
-          />
         <input 
           placeholder='autor' 
           type='text'

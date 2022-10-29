@@ -11,8 +11,8 @@ const AuthProvider = ({children}) => {
 
   const [posts, setPosts ]= useState(blogData);
 
-  const eliminarPost = (slug)=>{ 
-    const newPosts = posts.filter(post => post.slug !== slug);
+  const eliminarPost = (title)=>{ 
+    const newPosts = posts.filter(post => post.title !== title);
     setPosts(newPosts);
   };
 

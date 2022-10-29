@@ -30,7 +30,7 @@ const BlogPage = () => {
       <ul>
         {posts.map(post =>(
           <BlogLink
-            key={post.slug} 
+            key={post.title.toLowerCase().split(" ").join("-")} 
             post={post}
             />
             ))}

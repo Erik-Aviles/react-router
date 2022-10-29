@@ -10,13 +10,13 @@ const BlogPost = () => {
   const navegate = useNavigate();
 
   const { auth, post }= useAuth()
-  const blogPost = post.posts.find(post => post.slug === slug);
+  const blogPost = post.posts.find(post => post.title.toLowerCase().split(" ").join("-") === slug);
   /* const canDelete = auth.user?.userRoles || blogPost.author === auth.user?.userName; */
   const canDelete = auth.user?.isAdmin?.name || auth.user?.isCreator?.name;;
   const canRefresh = auth.user?.isAdmin?.name || auth.user?.isCreator?.name || auth.user?.isAnality?.name;
   
   const onDelete = () =>{
-    post.eliminarPost(blogPost?.slug)
+    post.eliminarPost(blogPost?.title)
     navegate('/blog')
   }
 
