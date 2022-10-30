@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth';
-import './AddPost.css'
+import './EdithPost.css'
 
 const inicialValue = {
-  id: '',
   title: '',
   content: '',
   author: '',
 };
 
-const AddPost = () => {
-
-  const navegate = useNavigate()
+const EdithPost = () => {
+  const navegate = useNavigate() 
 
   const [value, setValue] = useState(inicialValue);
-  const {id, title, content, author } = value;
+  const {title, content, author } = value;
   const { post, messagges } = useAuth();
+  
+  useEffect(() =>{
+    if (post.edithPost) {
+      setValue(post.edithPost)
+      
+    }
+  }, [post.edithPost])
   
   const handleChange = (e) =>{
     const changeValue = {
@@ -25,8 +30,13 @@ const AddPost = () => {
     }
     setValue(changeValue)
   } 
+  const onCalcelar = () =>{
+    navegate('/blog')
+    /* post.setEdithPost(null) */
+  } 
 
-  const handleSubmit = (e) => {
+
+ const handleSubmit = (e) => {
     e.preventDefault();
 
     if(title.trim() === ''){
@@ -36,8 +46,8 @@ const AddPost = () => {
       messagges.setError('Completar campos obligatorios (contenido*)')
       return;
     } else {
-      post.addPost(value);  
-      messagges.setSuccessMessagge("Agregado con exito")
+      post.updatePost(value);  
+      messagges.setSuccessMessagge("Editado con exito")
       messagges.setError(null);
     }
     
@@ -45,16 +55,14 @@ const AddPost = () => {
       messagges.setSuccessMessagge(null)
       navegate('/blog');
   }, 2000);
-   
-  }
-  const onCalcelar = () =>{
-    navegate('/blog')
-    /* post.setEdithPost(null) */
-  } 
+ 
+ }   
+    
+  
 
   return (
     <div className='content-add-post'>
-      <h3 className='title-3'>Agregar un nuevo post</h3>
+      <h3 className='title-3'>Editar post</h3>
       { messagges.error && (<div> {messagges.error} </div>)
       }
       { messagges.successMessagge && (<div> {messagges.successMessagge} </div>)
@@ -62,31 +70,25 @@ const AddPost = () => {
 
       <form onSubmit={handleSubmit} className='form'>
         <input 
-          placeholder='Clave unica' 
-          type='text'
-          name='id'
-          value={id}
-          onChange={handleChange}/>
-        <input 
-          placeholder='Autor' 
+          placeholder='autor' 
           type='text'
           name='author'
           value={author}
           onChange={handleChange}/>
         <input 
-          placeholder='Titulo*' 
+          placeholder='titulo*' 
           type='text'
           name='title'
           value={title}
           onChange={handleChange} />
         <textarea 
           className='text-area-contenido'
-          placeholder='Contenido*'
+          placeholder='contenido*'
           name='content'
           value={content}
           onChange={handleChange}>
         </textarea>
-        <button>Guardar post</button>
+        <button>Guardar cambios</button>
         <button type='button' onClick={onCalcelar}>Cancelar</button>
       </form>
       
@@ -94,4 +96,4 @@ const AddPost = () => {
   )
 }
 
-export default AddPost
+export default EdithPost;

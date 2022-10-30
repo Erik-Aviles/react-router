@@ -4,12 +4,21 @@ import { adminList, creatorList, analystList } from '../administratorsRoles';
 import { blogData } from '../blogData';
 
 const AuthContext = createContext();
+const localPosts = JSON.parse(localStorage.getItem('POSTS_1'))
 
 const AuthProvider = ({children}) => {
+  
   const navegate = useNavigate();
   const [user, setUser] = useState(null);
 
-  const [posts, setPosts ]= useState(blogData);
+  const [posts, setPosts ]= useState(localPosts ||blogData);
+  const [edithPost, setEdithPost ]= useState(null);
+  const [error, setError] = useState(null)
+  const [successMessagge, setSuccessMessagge] = useState(null)
+
+  useEffect(()=>{
+    localStorage.setItem('POSTS_1', JSON.stringify(posts))
+  }, [posts])
 
   const eliminarPost = (title)=>{ 
     const newPosts = posts.filter(post => post.title !== title);
@@ -21,16 +30,21 @@ const AuthProvider = ({children}) => {
       ...post,
     }
     const changePosts = [
-      ...posts,
       newPosts,
-
+      ...posts,
     ]
     setPosts(changePosts)
   }
-  useEffect(()=>{
-    navegate('/')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  const updatePost = (edithpost) => {
+
+    const changePosts = posts.map(post =>(
+      post.id === edithpost.id
+      ? edithpost
+      : post
+    ) )
+    setPosts(changePosts);
+
+  }
   
 /*   const addPost = (post) => {
     const newPosts = [
@@ -40,6 +54,12 @@ const AuthProvider = ({children}) => {
     setPosts(newPosts)
   } */
 
+  useEffect(()=>{
+    navegate('/')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
+
 
   const login = ({userName}) => {
     const isAdmin = adminList.find(admin => admin.name === userName);
@@ -48,22 +68,25 @@ const AuthProvider = ({children}) => {
     setUser({userName , isAdmin, isAnality, isCreator})
     navegate('/profile');
   }
+  
   const logout = () => {
     setUser(null);
     navegate('/')
   }
  
-  const post = {posts, eliminarPost, addPost}
-    const auth = {user, login, logout};
+  const post = {posts, eliminarPost, addPost, edithPost, setEdithPost, updatePost}
+  const auth = {user, login, logout};
+  const messagges = {error, setError, successMessagge, setSuccessMessagge}
+
   return (
-    <AuthContext.Provider value={{auth, post}}>
+    <AuthContext.Provider value={{auth, post, messagges}}>
       {children}
     </AuthContext.Provider>
   );
 }
 const useAuth = (children) => {
-  const{ auth, post} = useContext(AuthContext);
-  return {auth, post};
+  const{ auth, post, messagges} = useContext(AuthContext);
+  return {auth, post, messagges};
 }
 
 const AuthRouter = ( props ) => {

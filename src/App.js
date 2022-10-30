@@ -8,6 +8,7 @@ import { BlogPost } from './components/BlogPost';
 import { LoginPage } from './components/LoginPage';
 import { LogoutPage } from './components/LogoutPage';
 import AddPost from './components/AddPost';
+import EdithPost from './components/EdithPost';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/blog" element={<BlogPage /> }>
               <Route path=":slug" element={<BlogPost /> }/>
               <Route path="add-post" element={<AddPost /> }/>
+              <Route path="edith-post" element={<EdithPost /> }/>
             </Route>
             <Route path="/login" element={<LoginPage /> }/>
             <Route 
