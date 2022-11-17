@@ -15,14 +15,7 @@ const BlogPage = () => {
   return (
     <div>
       <h1>Blog </h1> 
-      {
-        user?.userName && 
-        <p>{`User: (${user?.userName})`} 
-            {user?.isAdmin?.name && ` es Administrador`}
-            {user?.isAnality?.name && ` es Analizador`}
-            {user?.isCreator?.name && ` es Creador`}
-          </p>
-      }
+     
       {canAdd && (
         <ButtonAddPost> Agregar post</ButtonAddPost>
         )}

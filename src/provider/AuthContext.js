@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { inicialUser } from '../const/inicialUser';
 import { adminList, creatorList, analystList } from '../const/rolesAdmin';
 
 const AuthContext = createContext();
@@ -8,7 +9,7 @@ const AuthContext = createContext();
 const AuthProvider = ({children}) => {
   
   const navegate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [error, setError] = useState(null)
   const [successMessagge, setSuccessMessagge] = useState(null)
 
@@ -22,15 +23,20 @@ const AuthProvider = ({children}) => {
     const isCreator = creatorList.find(creator => creator.name === userName);
     const isAnality = analystList.find(isAnality => isAnality.name === userName);
     setUser({userName , isAdmin, isAnality, isCreator})
-    navegate('/profile');
+    // navegate('/profile');
   }
   
   const logout = () => {
     setUser(null);
     navegate('/')
   }
+
+  const toogleFavoriteMovieToUser = (moviId) =>{
+
+  }
+
  
-  const data = {user, login, logout, error, setError, successMessagge, setSuccessMessagge}
+  const data = {user, login, logout, error, setError, successMessagge, setSuccessMessagge, toogleFavoriteMovieToUser}
 
   return (
     <AuthContext.Provider value={data}>

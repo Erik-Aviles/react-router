@@ -1,7 +1,7 @@
 const inicialUser = {
     name: 'Erika',
     apellido: 'Aviles',
-    favoriteMovies: []
+    favoriteMovies: [1,2]
 }
 
 

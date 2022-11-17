@@ -6,13 +6,29 @@ import './Menu.css'
 const Menu = () => {
   const{ user } = useAuth();
   return (
-    <nav>
-      <ul className='Menu'>
-        {routes.map(route => {
+    <nav className='navbar navbar-dark bg-dark mb-2' >
+      <div className='container'>
+        { !user
+          ? <span className='navbar-brand'>
+              Bienvenid@
+            </span>
+          : user?.userName && 
+              <span className='navbar-brand'>
+                {`Hola, ${user?.userName}`} 
+                  {user?.isAdmin?.name && ` (Administrador)`}
+                  {user?.isAnality?.name && ` (Analizador)`}
+                  {user?.isCreator?.name && ` (Creador)`}
+              </span>
+        }
+
+        <ul className='nav'>
+          {routes.map(route => {
           if (route.publicOnly  && user ) return null;
           if (route.private  && !user ) return null;
           return (
-            <li key={route.to}>
+            <li
+              className='p-4'
+              key={route.to}>
               <NavLink 
                 end
                 style={({ isActive }) => ({
@@ -24,8 +40,10 @@ const Menu = () => {
               </NavLink>
             </li>
             )
-        } )}
-      </ul>
+          } )}
+        </ul>
+      </div>
+     
     </nav>
   );
 }

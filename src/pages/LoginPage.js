@@ -8,9 +8,9 @@ const LoginPage = () => {
 
   
   const onhandleChange = (event) => {
-    setUserName(event.target.value);
-      
+    setUserName(event.target.value);   
   }
+  
   const Login = (e) => {
     e.preventDefault();
    if (userName === '') {
