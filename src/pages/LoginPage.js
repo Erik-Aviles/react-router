@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthContext';
+import { useAuth } from '../provider/AuthContext';
 
 const LoginPage = () => {
-  const {auth} = useAuth();
+  const { user, login } = useAuth();
   const [ userName, setUserName ] = useState('');
 
   
@@ -16,11 +16,11 @@ const LoginPage = () => {
    if (userName === '') {
     alert('Espacio en blanco')
    }else{
-    auth.login({userName});
+    login({userName});
    }
   }
 
-  if (auth.user) {
+  if (user) {
     return <Navigate to='/profile'/>
   }
   return (

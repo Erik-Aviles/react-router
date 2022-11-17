@@ -1,13 +1,13 @@
 import React from 'react'
-import { useAuth } from '../../provider/AuthContext';
+import { useAuth } from '../provider/AuthContext';
 
 const LogoutPage = () => {
 
-  const{ auth }= useAuth();
+  const{ logout }= useAuth();
   
   const onLogout = (e) =>{
     e.preventDefault();
-    auth.logout()
+    logout()
   }
   
   return (

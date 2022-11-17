@@ -4,13 +4,13 @@ import { useAuth } from '../../provider/AuthContext';
 import './Menu.css'
 
 const Menu = () => {
-  const{ auth } = useAuth();
+  const{ user } = useAuth();
   return (
     <nav>
       <ul className='Menu'>
         {routes.map(route => {
-          if (route.publicOnly  && auth.user ) return null;
-          if (route.private  && !auth.user ) return null;
+          if (route.publicOnly  && user ) return null;
+          if (route.private  && !user ) return null;
           return (
             <li key={route.to}>
               <NavLink 

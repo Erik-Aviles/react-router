@@ -15,7 +15,7 @@ const AddPost = () => {
 
   const navegate = useNavigate()
   const { addPost } = usePost()
-  const { messagges } = useAuth();
+  const { error, setError, successMessagge, setSuccessMessagge} = useAuth();
 
   const [value, setValue] = useState(inicialValue);
   const {id, title, content, author } = value;
@@ -33,19 +33,19 @@ const AddPost = () => {
     e.preventDefault();
 
     if(title.trim() === ''){
-      messagges.setError('Completar campos obligatorios (titulo*)')
+      setError('Completar campos obligatorios (titulo*)')
       return;
     }else if(content.trim() === ''){
-      messagges.setError('Completar campos obligatorios (contenido*)')
+      setError('Completar campos obligatorios (contenido*)')
       return;
     } else {
       addPost(value);  
-      messagges.setSuccessMessagge("Agregado con exito")
-      messagges.setError(null);
+      setSuccessMessagge("Agregado con exito")
+      setError(null);
     }
     
     setTimeout(()=> {
-      messagges.setSuccessMessagge(null)
+      setSuccessMessagge(null)
       navegate('/blog');
   }, 2000);
    
@@ -58,9 +58,9 @@ const AddPost = () => {
   return (
     <div className='content-add-post'>
       <h3 className='title-3'>Agregar un nuevo post</h3>
-      { messagges.error && (<div> {messagges.error} </div>)
+      { error && (<div> {error} </div>)
       }
-      { messagges.successMessagge && (<div> {messagges.successMessagge} </div>)
+      { successMessagge && (<div> {successMessagge} </div>)
       }
 
       <form onSubmit={handleSubmit} className='form'>

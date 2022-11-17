@@ -2,14 +2,14 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Menu } from './components/Menu';
 import { AuthProvider, AuthRouter } from './provider/AuthContext';
 import { HomePage }from './pages/HomePage'
-import { BlogPage } from './pages/BlogPage/Bloc';
+import { BlogPage } from './pages/BlogPage';
 import { ProfilePage } from './pages/ProfilePage'; 
 import { BlogPost } from './components/BlogPost';
 import { LoginPage } from './pages/LoginPage';
 import { LogoutPage } from './pages/LogoutPage';
 import AddPost from './components/AddPost';
 import EdithPost from './components/EdithPost';
-import MoviePage from './pages/MoviePage/MoviePage';
+import MoviePage from './pages/MoviePage';
 import { PostProvider } from './provider/PostContext';
 
 

@@ -7,12 +7,12 @@ const BlogPost = () => {
   const { slug } = useParams();
   const navegate = useNavigate();
 
-  const { auth }= useAuth();
+  const { user }= useAuth();
   const { posts, eliminarPost, setEdithPost }= usePost();
 
   const blogPost = posts.find(post => post.title.toLowerCase().split(" ").join("-") === slug);
-  const canDelete = auth.user?.isAdmin?.name || auth.user?.isCreator?.name;
-  const canRefresh = auth.user?.isAdmin?.name || auth.user?.isCreator?.name || auth.user?.isAnality?.name;
+  const canDelete = user?.isAdmin?.name || user?.isCreator?.name;
+  const canRefresh = user?.isAdmin?.name || user?.isCreator?.name || user?.isAnality?.name;
   
   const onDelete = () =>{
     eliminarPost(blogPost?.title)

@@ -13,7 +13,7 @@ const inicialValue = {
 const EdithPost = () => {
   const navegate = useNavigate() 
 
-  const { messagges } = useAuth();
+  const { error, setError, successMessagge, setSuccessMessagge } = useAuth();
   const { edithPost, updatePost } = usePost();
   
   const [value, setValue] = useState(inicialValue);
@@ -43,19 +43,19 @@ const EdithPost = () => {
     e.preventDefault();
 
     if(title.trim() === ''){
-      messagges.setError('Completar campos obligatorios (titulo*)')
+      setError('Completar campos obligatorios (titulo*)')
       return;
     }else if(content.trim() === ''){
-      messagges.setError('Completar campos obligatorios (contenido*)')
+      setError('Completar campos obligatorios (contenido*)')
       return;
     } else {
       updatePost(value);  
-      messagges.setSuccessMessagge("Editado con exito")
-      messagges.setError(null);
+      setSuccessMessagge("Editado con exito")
+      setError(null);
     }
     
     setTimeout(()=> {
-      messagges.setSuccessMessagge(null)
+      setSuccessMessagge(null)
       navegate('/blog');
   }, 2000);
  
@@ -66,9 +66,9 @@ const EdithPost = () => {
   return (
     <div className='content-add-post'>
       <h3 className='title-3'>Editar post</h3>
-      { messagges.error && (<div> {messagges.error} </div>)
+      { error && (<div> {error} </div>)
       }
-      { messagges.successMessagge && (<div> {messagges.successMessagge} </div>)
+      { successMessagge && (<div> {successMessagge} </div>)
       }
 
       <form onSubmit={handleSubmit} className='form'>

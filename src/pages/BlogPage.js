@@ -1,26 +1,26 @@
 import React from 'react';
-import { BlogLink } from '../../components/BlogLink';
+import { BlogLink } from '../components/BlogLink';
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthContext';
-import { ButtonAddPost } from '../../components/Buttons';
-import { usePost } from '../../provider/PostContext';
+import { useAuth } from '../provider/AuthContext';
+import { ButtonAddPost } from '../components/Buttons';
+import { usePost } from '../provider/PostContext';
 
 const BlogPage = () => { 
 
-  const { auth } = useAuth(); 
+  const { user } = useAuth(); 
   const { posts } = usePost();
   
 
-  const canAdd = auth.user?.isCreator?.name || auth.user?.isAdmin?.name;
+  const canAdd = user?.isCreator?.name || user?.isAdmin?.name;
   return (
     <div>
       <h1>Blog </h1> 
       {
-        auth.user?.userName && 
-        <p>{`User: (${auth.user?.userName})`} 
-            {auth.user?.isAdmin?.name && ` es Administrador`}
-            {auth.user?.isAnality?.name && ` es Analizador`}
-            {auth.user?.isCreator?.name && ` es Creador`}
+        user?.userName && 
+        <p>{`User: (${user?.userName})`} 
+            {user?.isAdmin?.name && ` es Administrador`}
+            {user?.isAnality?.name && ` es Analizador`}
+            {user?.isCreator?.name && ` es Creador`}
           </p>
       }
       {canAdd && (

@@ -1,6 +1,8 @@
 import React from 'react';
-import { initialMovies } from '../../const/inicialMovie';
-import Movie from '../../components/Movie/Movie';
+import { initialMovies } from '../const/inicialMovie';
+import Movie from '../components/Movie/Movie';
+
+
 const MoviePage = () => {
   return (
     <div className='container'>

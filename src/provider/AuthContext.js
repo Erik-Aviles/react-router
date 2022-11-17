@@ -9,7 +9,6 @@ const AuthProvider = ({children}) => {
   
   const navegate = useNavigate();
   const [user, setUser] = useState(null);
-
   const [error, setError] = useState(null)
   const [successMessagge, setSuccessMessagge] = useState(null)
 
@@ -17,8 +16,6 @@ const AuthProvider = ({children}) => {
     navegate('/')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
-
 
   const login = ({userName}) => {
     const isAdmin = adminList.find(admin => admin.name === userName);
@@ -33,24 +30,23 @@ const AuthProvider = ({children}) => {
     navegate('/')
   }
  
-  const auth = {user, login, logout};
-  const messagges = {error, setError, successMessagge, setSuccessMessagge}
+  const data = {user, login, logout, error, setError, successMessagge, setSuccessMessagge}
 
   return (
-    <AuthContext.Provider value={{auth, messagges}}>
+    <AuthContext.Provider value={data}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 const useAuth = (children) => {
-  const{ auth,  messagges} = useContext(AuthContext);
-  return {auth, messagges};
+  const data  = useContext(AuthContext);
+  return data;
 }
 
 const AuthRouter = ( props ) => {
-  const{ auth } = useAuth();
-  if (!auth.user) {
+  const{ user } = useAuth();
+  if (!user) {
     return <Navigate to='/login'/>
   } else {
     return props.children
