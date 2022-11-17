@@ -1,14 +1,15 @@
 import React from 'react';
 import { useParams, useNavigate, Link} from 'react-router-dom';
-import { useAuth } from '../auth';
+import { useAuth } from '../../provider/AuthProvider';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const navegate = useNavigate();
+  console.log(slug)
 
   const { auth, post }= useAuth()
   const blogPost = post.posts.find(post => post.title.toLowerCase().split(" ").join("-") === slug);
-  const canDelete = auth.user?.isAdmin?.name || auth.user?.isCreator?.name;;
+  const canDelete = auth.user?.isAdmin?.name || auth.user?.isCreator?.name;
   const canRefresh = auth.user?.isAdmin?.name || auth.user?.isCreator?.name || auth.user?.isAnality?.name;
   
   const onDelete = () =>{

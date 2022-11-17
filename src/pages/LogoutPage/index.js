@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuth } from '../auth';
+import { useAuth } from '../../provider/AuthProvider';
 
 const LogoutPage = () => {
 

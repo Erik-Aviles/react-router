@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
-import { adminList, creatorList, analystList } from '../administratorsRoles';
-import { blogData } from '../blogData';
+import { adminList, creatorList, analystList } from '../const/rolesAdmin';
+import { blogData } from '../const/blogData';
 
 const AuthContext = createContext();
+
 const localPosts = JSON.parse(localStorage.getItem('POSTS_1'))
 
 const AuthProvider = ({children}) => {
@@ -84,6 +85,7 @@ const AuthProvider = ({children}) => {
     </AuthContext.Provider>
   );
 }
+
 const useAuth = (children) => {
   const{ auth, post, messagges} = useContext(AuthContext);
   return {auth, post, messagges};

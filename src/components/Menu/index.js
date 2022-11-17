@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../auth';
+import { useAuth } from '../../provider/AuthProvider';
 import './Menu.css'
 
 const Menu = () => {
@@ -40,6 +40,12 @@ routes.push({
 routes.push({
   to: '/blog',
   text: 'Blog',
+  private: false,
+
+});
+routes.push({
+  to: '/movie',
+  text: 'Peliculas',
   private: false,
 
 });

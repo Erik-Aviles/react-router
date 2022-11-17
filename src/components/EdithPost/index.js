@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth';
+import { useAuth } from '../../provider/AuthProvider';
 import './EdithPost.css'
 
 const inicialValue = {

@@ -1,14 +1,15 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Menu } from './components/Menu';
-import { AuthProvider, AuthRouter } from './components/auth';
-import { HomePage }from './components/HomePage'
-import { BlogPage } from './components/BlogPage/Bloc';
-import { ProfilePage } from './components/ProfilePage'; 
+import { AuthProvider, AuthRouter } from './provider/AuthProvider';
+import { HomePage }from './pages/HomePage'
+import { BlogPage } from './pages/BlogPage/Bloc';
+import { ProfilePage } from './pages/ProfilePage'; 
 import { BlogPost } from './components/BlogPost';
-import { LoginPage } from './components/LoginPage';
-import { LogoutPage } from './components/LogoutPage';
+import { LoginPage } from './pages/LoginPage';
+import { LogoutPage } from './pages/LogoutPage';
 import AddPost from './components/AddPost';
 import EdithPost from './components/EdithPost';
+import MoviePage from './pages/MoviePage/MoviePage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="add-post" element={<AddPost /> }/>
               <Route path="edith-post" element={<EdithPost /> }/>
             </Route>
+            <Route path='/movie' element={<MoviePage />} />
             <Route path="/login" element={<LoginPage /> }/>
             <Route 
               path="/logout" 
