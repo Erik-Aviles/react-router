@@ -1,23 +1,25 @@
 import React from 'react';
 import { useParams, useNavigate, Link} from 'react-router-dom';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthContext';
+import { usePost } from '../../provider/PostContext';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const navegate = useNavigate();
-  console.log(slug)
 
-  const { auth, post }= useAuth()
-  const blogPost = post.posts.find(post => post.title.toLowerCase().split(" ").join("-") === slug);
+  const { auth }= useAuth();
+  const { posts, eliminarPost, setEdithPost }= usePost();
+
+  const blogPost = posts.find(post => post.title.toLowerCase().split(" ").join("-") === slug);
   const canDelete = auth.user?.isAdmin?.name || auth.user?.isCreator?.name;
   const canRefresh = auth.user?.isAdmin?.name || auth.user?.isCreator?.name || auth.user?.isAnality?.name;
   
   const onDelete = () =>{
-    post.eliminarPost(blogPost?.title)
+    eliminarPost(blogPost?.title)
     navegate('/blog')
   }
   const onEdith = () =>{
-    post.setEdithPost(blogPost);
+    setEdithPost(blogPost);
   }
 
   return (

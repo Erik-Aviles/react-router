@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthContext';
 import './Menu.css'
 
 const Menu = () => {

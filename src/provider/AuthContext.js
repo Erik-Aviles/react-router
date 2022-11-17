@@ -1,59 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { adminList, creatorList, analystList } from '../const/rolesAdmin';
-import { blogData } from '../const/blogData';
 
 const AuthContext = createContext();
 
-const localPosts = JSON.parse(localStorage.getItem('POSTS_1'))
 
 const AuthProvider = ({children}) => {
   
   const navegate = useNavigate();
   const [user, setUser] = useState(null);
 
-  const [posts, setPosts ]= useState(localPosts ||blogData);
-  const [edithPost, setEdithPost ]= useState(null);
   const [error, setError] = useState(null)
   const [successMessagge, setSuccessMessagge] = useState(null)
-
-  useEffect(()=>{
-    localStorage.setItem('POSTS_1', JSON.stringify(posts))
-  }, [posts])
-
-  const eliminarPost = (title)=>{ 
-    const newPosts = posts.filter(post => post.title !== title);
-    setPosts(newPosts);
-  };
-
-  const addPost = (post) => {
-    const newPosts = {
-      ...post,
-    }
-    const changePosts = [
-      newPosts,
-      ...posts,
-    ]
-    setPosts(changePosts)
-  }
-  const updatePost = (edithpost) => {
-
-    const changePosts = posts.map(post =>(
-      post.id === edithpost.id
-      ? edithpost
-      : post
-    ) )
-    setPosts(changePosts);
-
-  }
-  
-/*   const addPost = (post) => {
-    const newPosts = [
-      ...posts,
-  ]
-    newPosts.push(post)
-    setPosts(newPosts)
-  } */
 
   useEffect(()=>{
     navegate('/')
@@ -75,20 +33,19 @@ const AuthProvider = ({children}) => {
     navegate('/')
   }
  
-  const post = {posts, eliminarPost, addPost, edithPost, setEdithPost, updatePost}
   const auth = {user, login, logout};
   const messagges = {error, setError, successMessagge, setSuccessMessagge}
 
   return (
-    <AuthContext.Provider value={{auth, post, messagges}}>
+    <AuthContext.Provider value={{auth, messagges}}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 const useAuth = (children) => {
-  const{ auth, post, messagges} = useContext(AuthContext);
-  return {auth, post, messagges};
+  const{ auth,  messagges} = useContext(AuthContext);
+  return {auth, messagges};
 }
 
 const AuthRouter = ( props ) => {

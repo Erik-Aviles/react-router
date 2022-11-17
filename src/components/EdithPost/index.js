@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthContext';
+import { usePost } from '../../provider/PostContext';
 import './EdithPost.css'
 
 const inicialValue = {
@@ -12,16 +13,18 @@ const inicialValue = {
 const EdithPost = () => {
   const navegate = useNavigate() 
 
+  const { messagges } = useAuth();
+  const { edithPost, updatePost } = usePost();
+  
   const [value, setValue] = useState(inicialValue);
   const {title, content, author } = value;
-  const { post, messagges } = useAuth();
   
   useEffect(() =>{
-    if (post.edithPost) {
-      setValue(post.edithPost)
+    if (edithPost) {
+      setValue(edithPost)
       
     }
-  }, [post.edithPost])
+  }, [edithPost])
   
   const handleChange = (e) =>{
     const changeValue = {
@@ -46,7 +49,7 @@ const EdithPost = () => {
       messagges.setError('Completar campos obligatorios (contenido*)')
       return;
     } else {
-      post.updatePost(value);  
+      updatePost(value);  
       messagges.setSuccessMessagge("Editado con exito")
       messagges.setError(null);
     }

@@ -1,13 +1,15 @@
 import React from 'react';
 import { BlogLink } from '../../components/BlogLink';
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthContext';
 import { ButtonAddPost } from '../../components/Buttons';
+import { usePost } from '../../provider/PostContext';
 
 const BlogPage = () => { 
 
-  const {auth, post} = useAuth(); 
-  const posts = post.posts; 
+  const { auth } = useAuth(); 
+  const { posts } = usePost();
+  
 
   const canAdd = auth.user?.isCreator?.name || auth.user?.isAdmin?.name;
   return (
@@ -42,7 +44,5 @@ const BlogPage = () => {
     </div>
   )
 }
-
-
 
 export {BlogPage};

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthContext';
+import { usePost } from '../../provider/PostContext';
 import './AddPost.css'
 
 const inicialValue = {
@@ -13,10 +14,12 @@ const inicialValue = {
 const AddPost = () => {
 
   const navegate = useNavigate()
+  const { addPost } = usePost()
+  const { messagges } = useAuth();
 
   const [value, setValue] = useState(inicialValue);
   const {id, title, content, author } = value;
-  const { post, messagges } = useAuth();
+  
   
   const handleChange = (e) =>{
     const changeValue = {
@@ -36,7 +39,7 @@ const AddPost = () => {
       messagges.setError('Completar campos obligatorios (contenido*)')
       return;
     } else {
-      post.addPost(value);  
+      addPost(value);  
       messagges.setSuccessMessagge("Agregado con exito")
       messagges.setError(null);
     }
