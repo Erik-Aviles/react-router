@@ -1,8 +1,12 @@
-const inicialUser = {
-    name: 'Erika',
-    apellido: 'Aviles',
-    favoriteMovies: [1,2]
-}
+const inicialUser = [
+    { name: 'Sofia', apellido: 'Aviles', favoriteMovies: [1,2] },
+    { name: 'Paty', apellido: 'Vasquez', favoriteMovies: [1,2] },
+    { name: 'Ramona', apellido: 'Aviles', favoriteMovies: [6,8] },
+    { name: 'Erika', apellido: 'Montiel', favoriteMovies: [1,2] },
+    { name: 'Pricila', apellido: 'Gomez', favoriteMovies: [3,1] },
+    { name: 'Maria', apellido: 'Lola', favoriteMovies: [6,7] },
+]
+
 
 
 

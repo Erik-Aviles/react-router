@@ -5,10 +5,11 @@ import './Menu.css'
 
 const Menu = () => {
   const{ user } = useAuth();
+  console.log(user)
   return (
     <nav className='navbar navbar-dark bg-dark mb-2' >
       <div className='container'>
-        { !user
+        { user 
           ? <span className='navbar-brand'>
               Bienvenid@
             </span>
@@ -23,8 +24,8 @@ const Menu = () => {
 
         <ul className='nav'>
           {routes.map(route => {
-          if (route.publicOnly  && user ) return null;
-          if (route.private  && !user ) return null;
+          if (route.publicOnly  && user.name ) return null;
+          if (route.private  && user ) return null;
           return (
             <li
               className='p-4'

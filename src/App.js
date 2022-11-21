@@ -11,6 +11,7 @@ import AddPost from './components/AddPost';
 import EdithPost from './components/EdithPost';
 import MoviePage from './pages/MoviePage';
 import { PostProvider } from './provider/PostContext';
+import Register from './components/Register/Register';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <HashRouter>
         <AuthProvider >
           <Menu />
+          <div className='app'>
           <Routes>
             <Route path="/" element={<HomePage /> } />
             <Route path="/blog" element=
@@ -33,7 +35,9 @@ function App() {
               <Route path="edith-post" element={<EdithPost /> }/>
             </Route>
             <Route path='/movie' element={<MoviePage />} />
-            <Route path="/login" element={<LoginPage /> }/>
+            <Route path="/login" element={<LoginPage /> }>
+              <Route path="register" element={<Register />} />
+            </Route>
             <Route 
               path="/logout" 
               element={
@@ -50,6 +54,7 @@ function App() {
             </Route>
             <Route path="*" element={<p>Not found</p> }/>
           </Routes>
+          </div>
         </AuthProvider>
       </HashRouter>
     </>

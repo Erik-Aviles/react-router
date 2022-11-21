@@ -1,0 +1,40 @@
+{
+    "persons": [
+        { 
+            "id": 1,
+            "name": "Sofia", 
+            "apellido": "Aviles", 
+            "favoriteMovies": [1,2] 
+        },
+        { 
+            "id": 2,
+            "name": "Paty", 
+            "apellido": "Vasquez", 
+            "favoriteMovies": [1,2] 
+        },
+        {
+            "id": 3,
+            "name": "Ramona", 
+            "apellido": "Aviles", 
+            "favoriteMovies": [6,8]
+        },
+        {
+            "id": 4,
+            "name": "Erika", 
+            "apellido": "Montiel", 
+            "favoriteMovies": [1,2]
+        },
+        {
+            "id": 5,
+            "name": "Pricila", 
+            "apellido": "Gomez", 
+            "favoriteMovies": [3,1]
+        },
+        {
+            "id": 6,
+            "name": "Maria", 
+            "apellido": "Lola", 
+            "favoriteMovies": [6,7]
+        }
+    ]
+}
